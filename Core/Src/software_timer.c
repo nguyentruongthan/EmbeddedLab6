@@ -154,6 +154,22 @@ void timer_scan_led_7seg_callback()
 }
 
 
+/**
+ * Send temp sensor value through UART2
+ */
+uint8_t timer_send_temp_sensor_flag = 0;
+int timer_send_temp_sensor_count = 0;
+void set_timer_send_temp_sensor(int delay)
+{
+	timer_send_temp_sensor_flag = 0;
+	timer_send_temp_sensor_count = delay;
+}
+void timer_send_temp_sensor_callback()
+{
+	uint8_t buffer[30];
+	uint16_t length = sprintf(buffer, "!%f#", temperature_sensor_value);
+	uart2_SendBytes(buffer, length);
+}
 
 
 
@@ -220,6 +236,18 @@ void timer_run()
 		}
 	}
 
+
+	/**
+	 * Send temp sensor value through UART2
+	 */
+	if(timer_send_temp_sensor_count> 0)
+	{
+		timer_send_temp_sensor_count --;
+		if(timer_send_temp_sensor_count <= 0)
+		{
+			timer_send_temp_sensor_flag = 1;
+		}
+	}
 
 
 }
