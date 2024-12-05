@@ -37,10 +37,6 @@ void timer_read_adc_callback()
 	light_sensor_value = sensor_GetLight();
 
 	humidity_sensor_value = ((float)sensor_GetPotentiometer() / 4095.0) * 100;
-	if(humidity_sensor_value > 70)
-	{
-		set_timer_warning_humidity(1);
-	}
 
 	temperature_sensor_value = sensor_GetTemperature();
 	current_sensor_value = sensor_GetCurrent();
