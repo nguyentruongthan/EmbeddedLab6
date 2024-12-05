@@ -46,12 +46,7 @@ extern uint8_t timer_scan_led_7seg_flag;
 void set_timer_scan_led_7seg(int delay);
 void timer_scan_led_7seg_callback();
 
-/**
- * Send temp sensor value through UART2
- */
-extern uint8_t timer_send_temp_sensor_flag;
-void set_timer_send_temp_sensor(int delay);
-void timer_send_temp_sensor_callback();
+
 
 void timer_run();
 

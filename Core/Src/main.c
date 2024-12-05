@@ -132,7 +132,6 @@ int main(void)
   set_timer_read_adc(5);
   set_timer_scan_led_7seg(7);
   set_timer_warning_humidity(9);
-  set_timer_send_temp_sensor(50);
 
   lcd_Clear(BLACK);
   /* USER CODE END 2 */
@@ -173,12 +172,6 @@ int main(void)
 	  {
 		  set_timer_warning_humidity(1000); /* 1000 ms */
 		  timer_warning_humidity_callback();
-	  }
-
-	  if(timer_send_temp_sensor_flag)
-	  {
-		  set_timer_send_temp_sensor(5000); /* 5000 ms */
-		  timer_send_temp_sensor_callback();
 	  }
   }
   /* USER CODE END 3 */
